@@ -487,7 +487,7 @@ CHBinaryTreeNode* CHCreateBinaryTreeNodeWithObject(id anObject) {
 	sentinel->object = anObject; // Make sure the target value is always "found"
 	CHBinaryTreeNode *current = header->right;
 	NSComparisonResult comparison;
-	while (comparison = [current->object compare:anObject]) // while not equal
+	while ((comparison = [current->object compare:anObject])) // while not equal
 		current = current->link[comparison == NSOrderedAscending]; // R on YES
 	return (current != sentinel) ? current->object : nil;
 }

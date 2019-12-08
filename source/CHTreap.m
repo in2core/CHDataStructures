@@ -44,7 +44,7 @@
 	
 	sentinel->object = anObject; // Assure that we find a spot to insert
 	NSComparisonResult comparison;
-	while (comparison = [current->object compare:anObject]) {
+	while ((comparison = [current->object compare:anObject])) {
 		CHBinaryTreeStack_PUSH(current);
 		current = current->link[comparison == NSOrderedAscending]; // R on YES
 	}
@@ -103,7 +103,7 @@
 	
 	// First, we must locate the object to be removed, or we exit if not found
 	sentinel->object = anObject; // Assure that we stop at a sentinel leaf node
-	while (comparison = [current->object compare:anObject]) {
+	while ((comparison = [current->object compare:anObject])) {
 		parent = current;
 		current = current->link[comparison == NSOrderedAscending]; // R on YES
 	}
@@ -132,7 +132,7 @@
 	sentinel->object = anObject; // Make sure the target value is always "found"
 	CHBinaryTreeNode *current = header->right;
 	NSComparisonResult comparison;
-	while (comparison = [current->object compare:anObject]) // while not equal
+	while ((comparison = [current->object compare:anObject])) // while not equal
 		current = current->link[comparison == NSOrderedAscending]; // R on YES
 	return (current != sentinel) ? current->priority : CHTreapNotFound;
 }
